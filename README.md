@@ -19,8 +19,9 @@ calls it.
    about four minutes.
 3. Download the run's artifact **prospector-sprite** and flash the
    `prospector-sprite.uf2` inside it: double-tap the Prospector Dongle's reset
-   button and copy the file onto the `XIAO-SENSE` volume that appears
-   (zmk-beacon's README, "Flashing", has the details and the no-hands way).
+   button and copy the file onto the volume that appears (`XIAO-SENSE`, the
+   factory bootloader's name). zmk-beacon's README has the details under "The
+   least", step 4, and the no-hands way under "The serial port".
 
 Another sprite is another run. GitHub keeps an artifact for 90 days.
 
@@ -28,10 +29,10 @@ Another sprite is another run. GitHub keeps an artifact for 90 days.
 
 The sprite plays above the HP bar; the bar shows your keyboard's battery once
 the keyboard's split central runs zmk-beacon's broadcaster (zmk-beacon's README,
-"Using the module in a ZMK config"). Until then the bar reads `--/100`, and
-the screen stays lit anyway (this image never turns it off by itself; add
-`CONFIG_BEACON_SCREEN_OFF_AFTER_S=300` under `extra_conf` in the workflow for
-the five-minute timeout).
+"Using it in a ZMK config", The least, step 2). Until then the bar reads
+`--/100`, and the screen stays lit anyway (this image never turns it off by
+itself; add `CONFIG_BEACON_SCREEN_OFF_AFTER_S=300` under `extra_conf` in the
+workflow for the five-minute timeout).
 
 This image takes its sprite from the build only: it has no BLE receiver, so it
 neither advertises nor connects, and zmk-beacon's sprite sender cannot swap
