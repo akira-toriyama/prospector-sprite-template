@@ -1,0 +1,52 @@
+name: prospector-sprite
+
+# Builds the Prospector Dongle's firmware with one sprite embedded, in this
+# repository's run, through zmk-beacon's reusable workflow
+# (https://github.com/akira-toriyama/zmk-beacon, README "A sprite image from
+# GitHub Actions"). Actions > prospector-sprite > Run workflow: the sprite's
+# number, and the language of its name. The run's artifact
+# `prospector-sprite` holds prospector-sprite.uf2.
+#
+# The `uses:` line pins zmk-beacon by commit, so this workflow changes only
+# when you change it; a newer zmk-beacon is a newer SHA there. The other
+# inputs of the reusable (another repository of GIFs or names, a name of your
+# own, extra Kconfig lines) go under `with:`; a private repository's token
+# goes under `secrets:` (both commented below). Nothing of the picture lives
+# in this repository: only in the run and its artifact.
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: "The sprite's number: the GIF <number>.gif (the National Pokédex number)"
+        required: true
+        type: string
+      lang:
+        description: "The name above the HP bar: en (the English name) or ja (the katakana name when it fits, else the English one)"
+        required: true
+        type: choice
+        options:
+          - en
+          - ja
+        default: en
+
+permissions:
+  contents: read
+
+jobs:
+  sprite:
+    uses: akira-toriyama/zmk-beacon/.github/workflows/prospector-sprite.yml@e2b9f64799f728d3c931216db4b7c915aadd6f60
+    with:
+      number: ${{ inputs.number }}
+      lang: ${{ inputs.lang }}
+      # name: "My sprite"            # a name of your own (15 bytes, printable ASCII or katakana)
+      # extra_conf: |                # Kconfig lines appended to the image's prospector.conf
+      #   CONFIG_BEACON_SCREEN_OFF_AFTER_S=300
+      # sprites_repo: owner/repo     # another repository of <number>.gif files ...
+      # sprites_ref: <commit sha>    # ... at a commit of it (required with it)
+      # sprites_dir: path/in/it
+      # names_repo: owner/repo       # another repository of the species names CSV ...
+      # names_ref: <commit sha>      # ... at a commit of it (required with it)
+      # names_path: path/in/it.csv
+    # secrets:
+    #   sprites_token: ${{ secrets.SPRITES_TOKEN }}   # for a private sprites or names repository
