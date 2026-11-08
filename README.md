@@ -16,7 +16,7 @@ calls it.
    Give the sprite's number (its National Pokédex number) and the language of
    the name shown above the HP bar: `en`, the English name, or `ja`, the
    katakana name when it fits the bar, else the English one. The run takes
-   about ten minutes.
+   about four minutes.
 3. Download the run's artifact **prospector-sprite** and flash the
    `prospector-sprite.uf2` inside it: double-tap the Prospector Dongle's reset
    button and copy the file onto the `XIAO-SENSE` volume that appears
