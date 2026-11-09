@@ -1,9 +1,9 @@
 # prospector-sprite-template
 
 A GitHub Actions workflow that builds the firmware of a
-[Prospector Dongle](https://github.com/akira-toriyama/zmk-beacon) with one
+[Prospector Dongle](https://github.com/akira-toriyama/zmk-vfx-beacon) with one
 sprite embedded, from the sprite's number, in your own repository's run. The
-firmware is [zmk-beacon](https://github.com/akira-toriyama/zmk-beacon)'s, built
+firmware is [zmk-vfx-beacon](https://github.com/akira-toriyama/zmk-vfx-beacon)'s, built
 by its reusable workflow; this repository holds nothing but the workflow that
 calls it.
 
@@ -20,7 +20,7 @@ calls it.
 3. Download the run's artifact **prospector-sprite** and flash the
    `prospector-sprite.uf2` inside it: double-tap the Prospector Dongle's reset
    button and copy the file onto the volume that appears (`XIAO-SENSE`, the
-   factory bootloader's name). zmk-beacon's README has the details under "The
+   factory bootloader's name). zmk-vfx-beacon's README has the details under "The
    least", step 4, and the no-hands way under "The serial port".
 
 Another sprite is another run. GitHub keeps an artifact for 90 days.
@@ -29,14 +29,14 @@ Another sprite is another run. GitHub keeps an artifact for 90 days.
 
 The sprite plays above the HP bar; the bar shows your keyboard's battery once
 the keyboard's central (a split's, or the keyboard itself when it is not a
-split) runs zmk-beacon's broadcaster (zmk-beacon's README, "Using it in a ZMK
+split) runs zmk-vfx-beacon's broadcaster (zmk-vfx-beacon's README, "Using it in a ZMK
 config", The least, step 2). Until then the bar reads
 `--/100`, and the screen stays lit anyway (this image never turns it off by
 itself; add `CONFIG_BEACON_SCREEN_OFF_AFTER_S=300` under `extra_conf` in the
 workflow for the five-minute timeout).
 
 This image takes its sprite from the build only: it has no BLE receiver, so it
-neither advertises nor connects, and zmk-beacon's sprite sender cannot swap
+neither advertises nor connects, and zmk-vfx-beacon's sprite sender cannot swap
 its sprite. To show another sprite, run the workflow again and flash again.
 
 ## The pictures and the names
@@ -45,8 +45,8 @@ The workflow fetches the GIF from
 [PokeAPI/sprites](https://github.com/PokeAPI/sprites) (the Black/White animated
 sprites) and the name from
 [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi)'s species names CSV,
-both at commits pinned in zmk-beacon's `tools/sprite_fetch.py`, straight into
-your run. They never enter this repository, yours, or zmk-beacon's.
+both at commits pinned in zmk-vfx-beacon's `tools/sprite_fetch.py`, straight into
+your run. They never enter this repository, yours, or zmk-vfx-beacon's.
 
 The sprites are © The Pokémon Company (PokeAPI/sprites' `LICENCE.txt`); the
 names come from a BSD-3-Clause data set; Pokémon and the Pokémon character
@@ -65,11 +65,11 @@ The log says where: `sprite_fetch:` lines for a GIF or CSV that could not be
 fetched (a number with no GIF, a repository without its commit); CMake for a
 GIF that does not convert or does not fit the LVGL pool; a `static assertion`
 for one wider or taller than the sprite box; `region 'FLASH' overflowed` for a
-pack too large for the flash. zmk-beacon's README, "The sprite", lists the
+pack too large for the flash. zmk-vfx-beacon's README, "The sprite", lists the
 limits.
 
 If your repository's settings require actions to be pinned by SHA, the tag
-references inside zmk-beacon's reusable workflow (`actions/checkout@v7`) may
+references inside zmk-vfx-beacon's reusable workflow (`actions/checkout@v7`) may
 be refused; this has not been tried.
 
 ## License

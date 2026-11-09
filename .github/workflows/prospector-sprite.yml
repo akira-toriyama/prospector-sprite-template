@@ -1,14 +1,14 @@
 name: prospector-sprite
 
 # Builds the Prospector Dongle's firmware with one sprite embedded, in this
-# repository's run, through zmk-beacon's reusable workflow
-# (https://github.com/akira-toriyama/zmk-beacon, README "A sprite image from
+# repository's run, through zmk-vfx-beacon's reusable workflow
+# (https://github.com/akira-toriyama/zmk-vfx-beacon, README "A sprite image from
 # GitHub Actions"). Actions > prospector-sprite > Run workflow: the sprite's
 # number, and the language of its name. The run's artifact
 # `prospector-sprite` holds prospector-sprite.uf2.
 #
-# The `uses:` line pins zmk-beacon by commit, so this workflow changes only
-# when you change it; a newer zmk-beacon is a newer SHA there. The other
+# The `uses:` line pins zmk-vfx-beacon by commit, so this workflow changes only
+# when you change it; a newer zmk-vfx-beacon is a newer SHA there. The other
 # inputs of the reusable (another repository of GIFs or names, a name of your
 # own, extra Kconfig lines) go under `with:`; a private repository's token
 # goes under `secrets:` (both commented below). Nothing of the picture lives
@@ -35,7 +35,7 @@ permissions:
 
 jobs:
   sprite:
-    uses: akira-toriyama/zmk-beacon/.github/workflows/prospector-sprite.yml@e2b9f64799f728d3c931216db4b7c915aadd6f60
+    uses: akira-toriyama/zmk-vfx-beacon/.github/workflows/prospector-sprite.yml@e2b9f64799f728d3c931216db4b7c915aadd6f60
     with:
       number: ${{ inputs.number }}
       lang: ${{ inputs.lang }}
